@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .box--small {
+            width: 90px;
+            height: 90px;
+        }
+
+        .box--medium {
+            width: 180px;
+            height: 180px;
+        }
+
+        .box--large {
+            width: 270px;
+            height: 270px;
+        }
+
+        .circle {
+            border-radius: 50%;
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .circle--small {
+            width: 90px;
+            height: 90px;
+        }
+
+        .circle--medium {
+            width: 180px;
+            height: 180px;
+        }
+
+        .circle--large {
+            width: 270px;
+            height: 270px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        <script type="text/babel">
+            const rootElement = document.getElementById('root');
+
+            function Box({ className = '', style, size, ...rest }) {
+                const sizeClassName = size ? `box--${size}` : '';
+                const props = {
+                    className: `box ${className}${sizeClassName}`,
+                    style: {
+                        fontStyle: 'italic',
+                        ...style
+                    },
+                    ...rest
+                }
+                return <div {...props} />
+            }
+
+            function Circle({ className = '', style, size, ...rest }) {
+                const sizeClassName = size ? `circle--${size}` : '';
+
+                const props = {
+                    className: `circle ${className}${sizeClassName}`,
+                    style: {
+                        fontStyle: 'italic',
+                        ...style
+                    },
+                    ...rest
+                }
+                
+                return <div {...props} />
+            }
+
+            const element = (
+                <div>
+                    // Box Area
+                    <Box size="small" style={{ backgroundColor: 'lightblue' }} children="small lightblue box" />
+                    <Box size="medium" style={{ backgroundColor: 'pink' }} children="medium pink box" />
+                    <Box size="large" style={{ backgroundColor: 'orange' }} children="large orange box" />
+
+                    // Circle Area
+                    <Circle size="small" style={{ backgroundColor: 'lightblue' }} children="small lightblue Circle" />
+                    <Circle size="medium" style={{ backgroundColor: 'pink' }} children="medium pink Circle" />
+                    <Circle size="large" style={{ backgroundColor: 'orange' }} children="large orange Circle" />
+                </div>
+            )
+
+            ReactDOM.render(element, rootElement);
+        </script>
+    </div>
+</body>
+
+</html>
