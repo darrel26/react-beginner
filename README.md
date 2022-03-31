@@ -52,4 +52,39 @@ const element = (
 
 The above code will render an HTML text `Hello World`;
 
-## Reusable React Component
+## React PropTypes
+
+to check/validate react components
+
+for example, there is a `SayHello` component with `firstName` and `lastName` as it props. To make sure the props is rendered with the right data types you can check it by using `PropTypes`
+
+```javascript
+// ...
+SayHello.propTypes = {
+    firstName(props, propName, componentName) {
+        if(typeof props[propName] !== 'String') {
+            return null;
+        }
+    }
+}
+```
+
+the above code is to make sure that `propName` has `String` types
+
+> **_NOTE_** : to use propTypes you need to import the CDN links or install it using npm
+>
+> PropTypes are not required, so make sure if you want it to be required just add `PropTypes.isRequired`
+
+## Interpolation
+
+in _Interpolation_ you can't use `if / for loop / etc.` you can only use the javascrript expressions like `ternary`
+
+in React element
+
+```javascript
+<div> // JSX
+    {`The ${text} is `} // JS 
+    {text.length ? <strong>{text.length}</strong> : 'Null'} // JS -> JSX -> JS -> JS
+    {' characters'} // JS
+</div>
+```
